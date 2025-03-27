@@ -9,9 +9,12 @@ Prof. Robert McKenney
 
 The second workflow will run integration tests on the Terraform configuration. This will include running `terraform init`, `terraform plan`, and `tflint` to check for common errors and best practices. These are more computationally expensive than the static tests, so they will only be run on _pull requests_ or push to the _main branch_.
 
-You could also include any Terratest tests in this workflow, but we will not be using Terratest in this lab.
+> [!TIP]
+> You could also include any Terratest tests in this workflow, but we will not be using Terratest in this lab.
 
-Create a new GitHub Actions workflow in the `.github/workflows` folder called `infra-ci-cd.yml`. Add the following content to the file.
+Create a new GitHub Actions workflow in the `.github/workflows` folder called `infra-ci-cd.yml`. 
+
+Add the following content to the file.
 
 <details><summary>Show workflow details</summary>
 
@@ -73,7 +76,7 @@ jobs:
 ```
 </details>
 
-That will run the `tflint` tool. Now add the instructions to run Terraform plan at the bottom of the file.
+That will run the `tflint` tool. Now, at the bottom of the file, add the instructions to run Terraform plan and publish the result to the GitHub PR discussion thread.
 
 <details><summary>Show additional workflow details</summary>
 
@@ -193,4 +196,6 @@ plugin "azurerm" {
 }
 ```
 
-Commit the changes to your local repository and then push the changes to GitHub. The workflow will run automatically when you open a pull request. Check the results in the PR discussion thread.
+Commit the changes to your local repository and then push the changes to GitHub. The workflow will run automatically when you open a pull request. 
+
+**Check the results in the PR discussion thread.**

@@ -15,7 +15,7 @@ The second will be used for deploying your infrastructure and applications. This
 
 You will need your Azure subscription ID and Azure tenant ID. You can look up these details with the `az account show` command. In the output, you will see the `id` (subscription ID) and `tenantId` fields. Copy these for use in later steps.
 
-For later convenience, you can capture the output of the command and assign it to a shell environment variables, like this.
+To make it easier to insert these values in CLI commands, you can capture the output of the commands and assign them to shell environment variables, like this.
 
 ```bash
 export subscriptionId=$(az account show --query id -o tsv)
@@ -118,17 +118,14 @@ az role assignment create \
   --scope /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName
 ```
 
-> [!WARNING]
-> Do we need to assign a service principal role for the storage account?
-
 ### Create three Federated Credentials
 
 **The first** will be for the GitHub Actions triggered in the `production` environment, i.e. when a pull request is merged to the `main` branch. This will map to the `contributor` service principal with read/write access to the resource group.
 
-The `az ad app federated-credential create` command will create a new federated credential for the Azure AD application specified by the `--id` argument. The `--parameters` argument specifies the path to a JSON file that contains the configuration parameters for the new federated credential.
-
 > [!TIP]
-> See the full documentation at [learn.microsoft.com](https://docs.microsoft.com/en-us/cli/azure/ad/app/federated-credential?view=azure-cli-latest)
+> See the full documentation for Federated Credentials at [learn.microsoft.com](https://docs.microsoft.com/en-us/cli/azure/ad/app/federated-credential?view=azure-cli-latest)
+
+The `az ad app federated-credential create` command will create a new federated credential for the Azure AD application specified by the `--id` argument. The `--parameters` argument specifies the path to a JSON file that contains the configuration parameters for the new federated credential.
 
 Create a new file at the path `infra/az-federated-credential-params/production-deploy.json` with the following contents. Replace `<your-github-username>` and `<repo-name>` with your GitHub username and the name of your repository.
 
@@ -151,7 +148,7 @@ az ad app federated-credential create \
   --parameters az-federated-credential-params/production-deploy.json
 ```
 
-**The second** will be for the GitHub Actions that run pre-merge checks. This credential will map to the `reader` service principal with read-only access to the resource group. This time use the `appIdR` shell environment variable.
+**The second credential** will be for the GitHub Actions that run pre-merge checks. This credential will map to the `reader` service principal with read-only access to the resource group. This time use the `appIdR` shell environment variable.
 
 Create a new file at the path `infra/az-federated-credential-params/pull-request.json` with the following contents.
 
@@ -174,7 +171,7 @@ az ad app federated-credential create \
   --parameters az-federated-credential-params/pull-request.json
 ```
 
-**The third** will be for the GitHub Actions that run on any push or pull request event on the main branch. Federated credential will again map to the `reader` service principal with read-only access to the resource group.
+**The third credential** will be for the GitHub Actions that run on any push or pull request event on the main branch. This will again map to the `reader` service principal with read-only access to the resource group.
 
 Create a new file at the path `infra/az-federated-credential-params/branch-main.json` with the following contents.
 
@@ -196,3 +193,5 @@ az ad app federated-credential create \
   --id $appIdR \
   --parameters az-federated-credential-params/branch-main.json
 ```
+
+OK. You now have the access credentials that GitHub will use to authenticate with Azure. These credentials are stored in the Azure Active Directory and are used by the GitHub Actions to access the Azure resources.

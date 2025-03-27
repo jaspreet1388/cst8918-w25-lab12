@@ -10,7 +10,9 @@ OpenID Connect (OIDC) is a simple identity layer on top of the OAuth 2.0 protoco
 OIDC is used in this lab to authenticate with Azure resources. This means that your Terraform configuration will authenticate directly to Azure, and that there is no need to store credentials as long-lived secrets which provides security benefits.
 
 ### Update the Terraform configuration
-Update the `terraform.tf` file in the `infra/tf-app` folder. Add the `use_oidc = true` argument to both the `backend` and  `azurerm` provider blocks.
+Update the `terraform.tf` file in the `infra/tf-app` folder. 
+
+Add the `use_oidc = true` argument to both the `backend` and  `azurerm` provider blocks.
 
 See lines 13 and 19 below:
 
