@@ -5,7 +5,7 @@ Prof. Robert McKenney
 
 ## 1. GitHub Repository Initial Settings
 
-One lab partner, create a new repository on GitHub called `cst8918-w24-lab12`. Initialize the repository with a README file and a `.gitignore` file for Terraform.
+One lab partner, create a new repository on GitHub called `cst8918-w25-lab12`. Initialize the repository with a README file and a `.gitignore` file for Terraform.
 
 > [!TIP] 
 > Copy the .gitignore file from an earlier assignment.
@@ -44,4 +44,3 @@ For this lab, set the `production` environment to only deploy from the `main` br
 
 > [!TIP] 
 > See these [instructions from the GitHub Docs](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules).
-

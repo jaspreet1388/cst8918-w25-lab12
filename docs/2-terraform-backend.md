@@ -26,7 +26,7 @@ This will be a simple configuration with only the necessary resources to store t
 - a container in the storage account called `tfstate` - make sure it is private
 
 > [!TIP]
-> Remember that the storage account name must be unique across all of Azure, and must be between 3 and 24 characters in length. Only use lowercase letters and numbers.
+> Remember that the storage account name must be unique across all of Azure, and must be between 3 and 24 characters in length. **Use only lowercase letters and numbers.**
 
 The output of the configuration should be the _resource group name_, _storage account name_, the _container name_ and the _primary access key_ (which will be added to the GitHub secrets). These will be the values that you need to use in the app infrastructure configuration's `backend` block.
 
@@ -61,11 +61,12 @@ So that we can test the Terraform configuration, add a resource group in the `ma
 
 Remember, one of the best practice strategies from software development is to develop in small increments and test often. Run the following commands to validate and deploy the Terraform configuration.
 
-> [!TIP]
-> Before you can test the Terraform configuration, you will need to set the `ARM_ACCESS_KEY` environment variable to the primary access key of the storage account. You can get this from the output of the Terraform configuration. You can set the environment variable with the following command:
+> [!IMPORTANT]
+> Before you can test the Terraform configuration, you will need to set the `ARM_ACCESS_KEY` environment variable to the primary access key of the storage account. You can get this from the output of the backend Terraform configuration. You can set the environment variable with the following command:
 
 ```bash
 # in the infra/tf-backend folder
+
 export ARM_ACCESS_KEY=$(terraform output -raw arm_access_key)
 ```
 
@@ -73,6 +74,7 @@ Then you can run the following commands to validate and deploy the Terraform con
 
 ```bash
 # in the infra/tf-app folder
+
 terraform init
 terraform fmt
 terraform validate
@@ -84,4 +86,4 @@ terraform apply tf-app.plan
 - Verify that the resource group was created in the Azure portal.
 - Verify that the Terraform state file was created in the storage account.
 
-OK - now you have the base Terraform configuration for the app infrastructure, and it correctly connects to Azure Blob Storage for the remote Terraform state file. You will add the AKS cluster and the deployment of the sample web application late in this lab. For now, you will complete the steps to create the GitHub Actions CI/CD workflows.
+OK - now you have the base Terraform configuration for the app infrastructure, and it correctly connects to Azure Blob Storage for the remote Terraform state file. You will add the AKS cluster and the deployment of the sample web application later in this lab. For now, you will complete the steps to create the GitHub Actions CI/CD workflows.

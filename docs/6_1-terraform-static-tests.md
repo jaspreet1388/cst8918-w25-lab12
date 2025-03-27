@@ -7,11 +7,11 @@ Prof. Robert McKenney
 
 ### 6.1 Static code analysis
 
-The first workflow will run static code analysis on the Terraform configuration. This will include running `terraform fmt` and `terraform validate` on the configuration.  and `checkov` to check for security issues.
+The first workflow will run static code analysis on the Terraform configuration. This will include running `terraform fmt` and `terraform validate` on the configuration.  It will also run [checkov](https://www.checkov.io/) to check for security issues.
 
 This workflow will be triggered on _any push_ to _any branch_, ensuring that all commits pushed to the repository are checked for common errors.
 
-Create a new GitHub Actions workflow in the `.github/workflows` folder called `infra-static_tests.yml`. Add the following content to the file.
+Create a new GitHub Actions workflow in the `.github/workflows` folder (at the root of the repository) called `infra-static_tests.yml`. Add the following content to the file:
 
 
 <details><summary>Show workflow details</summary>

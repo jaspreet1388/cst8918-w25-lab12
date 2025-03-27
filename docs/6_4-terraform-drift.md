@@ -10,6 +10,10 @@ Configuration drift is a common issue in infrastructure as code (IaC) environmen
 
 The final workflow will run daily to detect drift between the deployed infrastructure and the Terraform configuration. This workflow will be triggered on a schedule (like a CRON task), running once a day.
 
+If drift is detected, the workflow will create an issue in the repository to alert the team.
+
+If there is no drift, the workflow will automatically close any open issues related to drift detection.
+
 Create a new GitHub Actions workflow in the `.github/workflows` folder called `infra-drift-detection.yml`. Add the following content to the file.
 
 

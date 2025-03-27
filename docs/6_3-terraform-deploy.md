@@ -9,7 +9,9 @@ Prof. Robert McKenney
 
 The third workflow will deploy the Terraform configuration to Azure. This workflow will be triggered on a merge to the main branch from a pull-request.
 
-Update the GitHub Actions workflow in the `.github/workflows` folder called `infra-ci-cd.yml`. Add the following content to the bottom of the file.
+Update the GitHub Actions workflow in the `.github/workflows` folder called `infra-ci-cd.yml`. 
+
+Add the following content to the bottom of the file.
 
 <details><summary>Show workflow details</summary>
 
@@ -48,5 +50,4 @@ Update the GitHub Actions workflow in the `.github/workflows` folder called `inf
 
 </details>
 
-This workflow will only run if the terraform plan has changes, and when the PR is approved and merged to main. The workflow will use the production environment, and therefore the Azure clientID with read/write permission. The workflow will depend on the `terraform-plan` job to complete successfully.
-
+This workflow will only run if the terraform plan has changes, and when the PR is approved and merged to the `main` branch. The workflow will use the production environment, and therefore the Azure clientID with read/write permission. The workflow will depend on the `terraform-plan` job to have previously completed successfully.
