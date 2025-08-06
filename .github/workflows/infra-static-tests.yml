@@ -22,6 +22,13 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Debug - Show ARM environment variables
+        run: |
+          echo "ARM_CLIENT_ID=$ARM_CLIENT_ID"
+          echo "ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}"
+          echo "ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID"
+          echo "ARM_TENANT_ID=$ARM_TENANT_ID"
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
