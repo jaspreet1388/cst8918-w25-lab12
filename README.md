@@ -12,7 +12,7 @@ This lab is based on the scenario of an integrated git project with Terraform an
 
 The infrastructure is defined in a Terraform configuration in the `infra` folder. The Terraform configuration creates supporting resources in Azure and deploys the sample web application to the cluster. 
 
-You will create several GitHub Actions CI/CD workflows for automating:#fix##fixx
+You will create several GitHub Actions CI/CD workflows for automating:#fix##fixx##fixx
 
 - **static code analysis** of a Terraform configuration on push to any branch
 - running all Terraform **integration tests** on pull request to the main branch
