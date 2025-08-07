@@ -23,7 +23,7 @@ A separate Terraform "backend" configuration will create the storage account and
 
 ### Project folder structure
 
-When you are done, your project folder structure should look like this:
+When you are done, your project folder structure should look like this:##fix
 
 ```plaintext
 cst8918-w25-lab12
