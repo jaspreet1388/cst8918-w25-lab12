@@ -120,4 +120,9 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false -out=tfplan
 
-      # 6) Upload plan so reviewers can down
+      # 6) Upload plan so reviewers can download it from the PR/job page
+      - name: Upload plan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: infra/tf-app/tfplan
