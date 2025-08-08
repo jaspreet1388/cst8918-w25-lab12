@@ -10,7 +10,7 @@ This lab is based on the scenario of an integrated git project with Terraform an
 > [!IMPORTANT]
 > The application code is not provided in this lab. The focus is on the infrastructure as code (IaC) aspect of the example project. There is an empty `app` folder as a representation of the application code. Some changea####
 
-The infrastructure is defined in a Terraform configuration in the `infra` folder. The Terraform configuration creates supporting resources in Azure and deploys the sample web application to the cluster. 
+The infrastructure is defined in a Terraform configuration in the `infra` folder. The Terraform configuration creates supporting resources in Azure and deploys the sample web application to the cluster.#3 
 
 You will create several GitHub Actions CI/CD workflows for automating:#fix##fixx##fixx###
 
