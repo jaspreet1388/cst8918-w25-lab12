@@ -1,0 +1,52 @@
+name: Terraform Static Tests
+
+on:
+  push:
+    branches:
+      - '**'              # run on all branches while you code
+    paths:
+      - 'infra/tf-app/**' # only when tf-app changes
+  pull_request:
+    paths:
+      - 'infra/tf-app/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read          # no OIDC needed for static checks
+
+jobs:
+  static-checks:
+    name: Static Terraform Analysis
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/tf-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
+      # Init WITHOUT backend (no Azure calls)
+      - name: Terraform Init (no backend)
+        run: terraform init -backend=false
+
+      - name: Terraform Format Check
+        run: terraform fmt -recursive -check
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Install TFLint
+        run: curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+
+      - name: Run TFLint
+        run: tflint
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov
+        run: checkov -d .
