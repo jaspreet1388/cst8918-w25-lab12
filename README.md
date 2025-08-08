@@ -1,10 +1,12 @@
-CST8918 - DevOps: Infrastructure as Code  
-Submitted By : 
+# CST8918 - DevOps: Infrastructure as Code  
+
+
+## Lab 12: Terraform CI/CD on Azure with GitHub Actions
+
+### Submitted By : 
 - Jaspreet Singh (https://github.com/jaspreet1388)
 - Romeo De Guzman II (https://github.com/degu0055)
 - Akshay Malik (https://github.com/Mali0154)
-
-# Lab 12: Terraform CI/CD on Azure with GitHub Actions
 
 ## Background
 
