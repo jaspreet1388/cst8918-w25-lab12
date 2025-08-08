@@ -5,7 +5,7 @@ Prof. Robert McKenney
 
 ## Background
 
-This lab is based on the scenario of an integrated git project with Terraform and Azure. Imagine that the project is a simple web application that is containerized and deployed to an Azure Kubernetes Service (AKS) cluster. The application and it's Dockerfile would be defined in the `app` folder.##checkck####dummy
+This lab is based on the scenario of an integrated git project with Terraform and Azure. Imagine that the project is a simple web application that is containerized and deployed to an Azure Kubernetes Service (AKS) cluster. The application and it's Dockerfile would be defined in the `app` folder.##checkck####dummy###
 
 > [!IMPORTANT]
 > The application code is not provided in this lab. The focus is on the infrastructure as code (IaC) aspect of the example project. There is an empty `app` folder as a representation of the application code. Some changea####
