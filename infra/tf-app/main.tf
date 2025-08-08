@@ -82,6 +82,22 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_prefixes
 }
+# Network Security Group for the app subnet
+resource "azurerm_network_security_group" "app_nsg" {
+  name                = "${var.college_id}-app-nsg"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  tags = {
+    env = "lab12"
+  }
+}
+
+# Associate the NSG with the subnet
+resource "azurerm_subnet_network_security_group_association" "app_subnet_nsg" {
+  subnet_id = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.app_nsg.id
+}
 
 # -------------------------- Outputs ---------------------------
 output "resource_group_name" {
