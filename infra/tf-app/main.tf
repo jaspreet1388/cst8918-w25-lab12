@@ -15,7 +15,6 @@ terraform {
     tenant_id            = "e39de75c-b796-4bdd-888d-f3d21250910c"          # Your Azure Tenant ID
     client_id            = "873e0282-ef7e-4375-a2b0-e4559e242f1d"          # Your Service Principal App ID (client ID)
   }
-  }
 }
 
 provider "azurerm" {
