@@ -25,7 +25,7 @@ terraform {
 
 provider "azurerm" {
   features {}
-  use_oidc                   = true
+  use_oidc = true
   # Helpful for CI where the SP only has Reader/Storage roles during plan
   skip_provider_registration = true
 }
@@ -59,8 +59,8 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 
   tags = {
-    env  = "lab12"
-    app  = "tf-app"
+    env   = "lab12"
+    app   = "tf-app"
     owner = var.college_id
   }
 }
